@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  studymate:
+    build: .
+    container_name: studymate
+    ports:
+      - "8501:8501"
+    environment:
+      - NVIDIA_API_KEY=${NVIDIA_API_KEY}
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+    # Uncomment below if you need GPU support (requires NVIDIA Container Toolkit)
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
